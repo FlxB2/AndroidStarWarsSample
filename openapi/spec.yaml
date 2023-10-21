@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: swapi.dev
+  description: Swapi OpenAPI
+  version: 1.0.0
+servers:
+  - url: https://swapi.dev/api/
+  - url: http://swapi.dev/api/
+paths:
+  /api/films:
+    get:
+      description: Get all films.
+      operationId: /api/films/get
+      responses:
+        200:
+          description: An array of films.
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/film'
+      security:
+        - apikeyQuery: []
+      x-tests:
+        - description: success
+          response:
+            status: 200
+  /api/films/{id}:
+    get:
+      description: Get a specific film by id.
+      operationId: /api/films/{id}/get
+      parameters:
+        - name: id
+          in: path
+          description: Id of the film.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A film.
+          content:
+            '*/*':
+              schema:
+                type: object
+      security:
+        - apikeyQuery: []
+      x-tests:
+        - description: success
+          params:
+            id: 1
+          response:
+            status: 200
+        - description: unknown film
+          params:
+            id: 100
+          response:
+            status: 404
+  /api/people:
+    get:
+      description: Get all people.
+      operationId: /api/people/get
+      responses:
+        200:
+          description: An array of people.
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/person'
+      security:
+        - apikeyQuery: []
+  /api/people/{id}:
+    get:
+      description: Get a specific person by id.
+      operationId: /api/people/{id}/get
+      parameters:
+        - name: id
+          in: path
+          description: Id of the person.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A person.
+          content:
+            '*/*':
+              schema:
+                type: object
+      security:
+        - apikeyQuery: []
+  /api/planets:
+    get:
+      description: Get all planets.
+      operationId: /api/planets/get
+      responses:
+        200:
+          description: An array of planets.
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/planet'
+      security:
+        - apikeyQuery: []
+  /api/planets/{id}:
+    get:
+      description: Get a specific planet by id.
+      operationId: /api/planets/{id}/get
+      parameters:
+        - name: id
+          in: path
+          description: Id of the planet.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A planet.
+          content:
+            '*/*':
+              schema:
+                type: object
+      security:
+        - apikeyQuery: []
+components:
+  schemas:
+    person:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unique identifier representing a specific person for a given
+            character persona.
+        name:
+          type: string
+          description: Display name of person.
+        homeWorldId:
+          type: integer
+          description: Indetifier of the planet the person is from.
+        allegiance:
+          type: string
+          description: Which side or team the person has an allegiance.
+    planet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier representing a specific planet.
+        name:
+          type: string
+          description: Display name of planet.
+    film:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier representing a specific film.
+        name:
+          type: string
+          description: Display name of film.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+  securitySchemes:
+    apikeyQuery:
+      type: apiKey
+      name: code
+      in: query

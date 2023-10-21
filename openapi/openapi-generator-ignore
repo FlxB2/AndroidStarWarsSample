@@ -1,0 +1,8 @@
+/**/docs/
+/**/gradle/wrapper/
+/**/.openapi-generator-ignore
+/**/gradlew
+/**/gradlew.bat
+/**/README.md
+/**/settings.gradle
+/**/build.gradle
