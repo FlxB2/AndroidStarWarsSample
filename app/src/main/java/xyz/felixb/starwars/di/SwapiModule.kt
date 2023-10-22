@@ -5,8 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.openapitools.client.apis.DefaultApi
-import org.openapitools.client.infrastructure.ApiClient
+import dev.swapi.client.apis.DefaultApi
+import dev.swapi.client.infrastructure.ApiClient
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

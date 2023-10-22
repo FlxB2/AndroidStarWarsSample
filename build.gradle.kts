@@ -10,6 +10,7 @@ plugins {
 
 openApiGenerate {
     generatorName.set("kotlin")
+    packageName.set("dev.swapi.client")
     inputSpec.set("$rootDir/openapi/spec.yaml")
     outputDir.set("$rootDir/app")
     ignoreFileOverride.set("$rootDir/openapi/openapi-generator-ignore")

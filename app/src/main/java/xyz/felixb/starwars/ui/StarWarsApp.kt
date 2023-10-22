@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.openapitools.client.models.Person
+import dev.swapi.client.models.Person
 
 @Composable
 fun StarWarsApp() {
