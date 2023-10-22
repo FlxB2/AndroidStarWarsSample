@@ -41,10 +41,11 @@ interface DefaultApi {
      * Responses:
      *  - 200: An array of people.
      *
+     * @param page Numeric ID of the page to get
      * @return [PaginationPerson]
      */
     @GET("people")
-    suspend fun peopleGet(): Response<PaginationPerson>
+    suspend fun peopleGet(@Query("page") page: kotlin.Int): Response<PaginationPerson>
 
     /**
      * 

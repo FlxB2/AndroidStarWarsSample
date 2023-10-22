@@ -61,6 +61,13 @@ paths:
     get:
       description: Get all people.
       operationId: /people/get
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the page to get
       responses:
         200:
           description: An array of people.

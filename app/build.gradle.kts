@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.navigation:navigation-compose:2.7.4")
+    implementation("androidx.paging:paging-compose:3.2.1")
 
 
     // API
@@ -75,6 +76,7 @@ dependencies {
     // DI
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.paging:paging-common-ktx:3.2.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
 
 

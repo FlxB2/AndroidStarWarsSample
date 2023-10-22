@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import xyz.felixb.starwars.viewmodels.PeopleViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -29,10 +27,12 @@ fun StarWarsApp() {
 
 @Composable
 fun Test(viewModel: PeopleViewModel = hiltViewModel()) {
-    val people by viewModel.people.collectAsState(emptyList())
+    val people: LazyPagingItems<Person> = viewModel.people.collectAsLazyPagingItems()
 
     LazyColumn {
-        items(people) { person ->
+        items(count = people.itemCount,
+            key = { index -> index }) { index ->
+            val person = people[index] ?: return@items
             PersonItem(person)
         }
     }
