@@ -23,30 +23,30 @@ import kotlinx.serialization.Contextual
 /**
  * 
  *
- * @param id Unique identifier representing a specific person for a given character persona.
+ * @param birthYear Birthyear of person.
+ * @param gender Gender of person.
  * @param name Display name of person.
- * @param homeWorldId Indetifier of the planet the person is from.
- * @param allegiance Which side or team the person has an allegiance.
+ * @param homeWorld Indetifier of the planet the person is from.
  */
 @Serializable
 
 data class Person (
 
-    /* Unique identifier representing a specific person for a given character persona. */
-    @Contextual @SerialName(value = "id")
-    val id: java.math.BigDecimal? = null,
+    /* Birthyear of person. */
+    @SerialName(value = "birth_year")
+    val birthYear: kotlin.String? = null,
+
+    /* Gender of person. */
+    @SerialName(value = "gender")
+    val gender: kotlin.String? = null,
 
     /* Display name of person. */
     @SerialName(value = "name")
     val name: kotlin.String? = null,
 
     /* Indetifier of the planet the person is from. */
-    @SerialName(value = "homeWorldId")
-    val homeWorldId: kotlin.Int? = null,
-
-    /* Which side or team the person has an allegiance. */
-    @SerialName(value = "allegiance")
-    val allegiance: kotlin.String? = null
+    @SerialName(value = "homeWorld")
+    val homeWorld: kotlin.String? = null
 
 )
 

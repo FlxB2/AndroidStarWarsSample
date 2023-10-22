@@ -7,10 +7,10 @@ servers:
   - url: https://swapi.dev/api/
   - url: http://swapi.dev/api/
 paths:
-  /api/films:
+  /films:
     get:
       description: Get all films.
-      operationId: /api/films/get
+      operationId: /films/get
       responses:
         200:
           description: An array of films.
@@ -26,10 +26,10 @@ paths:
         - description: success
           response:
             status: 200
-  /api/films/{id}:
+  /films/{id}:
     get:
       description: Get a specific film by id.
-      operationId: /api/films/{id}/get
+      operationId: /films/{id}/get
       parameters:
         - name: id
           in: path
@@ -57,25 +57,23 @@ paths:
             id: 100
           response:
             status: 404
-  /api/people:
+  /people:
     get:
       description: Get all people.
-      operationId: /api/people/get
+      operationId: /people/get
       responses:
         200:
           description: An array of people.
           content:
             '*/*':
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/person'
+                $ref: '#/components/schemas/paginationPerson'
       security:
         - apikeyQuery: []
-  /api/people/{id}:
+  /people/{id}:
     get:
       description: Get a specific person by id.
-      operationId: /api/people/{id}/get
+      operationId: /people/{id}/get
       parameters:
         - name: id
           in: path
@@ -92,10 +90,10 @@ paths:
                 type: object
       security:
         - apikeyQuery: []
-  /api/planets:
+  /planets:
     get:
       description: Get all planets.
-      operationId: /api/planets/get
+      operationId: /planets/get
       responses:
         200:
           description: An array of planets.
@@ -107,10 +105,10 @@ paths:
                   $ref: '#/components/schemas/planet'
       security:
         - apikeyQuery: []
-  /api/planets/{id}:
+  /planets/{id}:
     get:
       description: Get a specific planet by id.
-      operationId: /api/planets/{id}/get
+      operationId: /planets/{id}/get
       parameters:
         - name: id
           in: path
@@ -129,22 +127,38 @@ paths:
         - apikeyQuery: []
 components:
   schemas:
+    paginationPerson:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of items in the response.
+        next:
+          type: string
+          description: Link to the next page of items.
+        previous:
+          type: string
+          description: Link to the previous page of items.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/person'
     person:
       type: object
       properties:
-        id:
-          type: number
-          description: Unique identifier representing a specific person for a given
-            character persona.
+        birth_year:
+          type: string
+          description: Birthyear of person.
+        gender:
+          type: string
+          description: Gender of person.
         name:
           type: string
           description: Display name of person.
-        homeWorldId:
-          type: integer
-          description: Indetifier of the planet the person is from.
-        allegiance:
+        homeWorld:
           type: string
-          description: Which side or team the person has an allegiance.
+          description: Indetifier of the planet the person is from.
     planet:
       type: object
       properties:

@@ -19,5 +19,6 @@ src/main/java/org/openapitools/client/infrastructure/URLAdapter.kt
 src/main/java/org/openapitools/client/infrastructure/UUIDAdapter.kt
 src/main/java/org/openapitools/client/models/Error.kt
 src/main/java/org/openapitools/client/models/Film.kt
+src/main/java/org/openapitools/client/models/PaginationPerson.kt
 src/main/java/org/openapitools/client/models/Person.kt
 src/main/java/org/openapitools/client/models/Planet.kt

@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 import org.openapitools.client.models.Film
-import org.openapitools.client.models.Person
+import org.openapitools.client.models.PaginationPerson
 import org.openapitools.client.models.Planet
 
 interface DefaultApi {
@@ -20,8 +20,8 @@ interface DefaultApi {
      *
      * @return [kotlin.collections.List<Film>]
      */
-    @GET("api/films")
-    suspend fun apiFilmsGet(): Response<kotlin.collections.List<Film>>
+    @GET("films")
+    suspend fun filmsGet(): Response<kotlin.collections.List<Film>>
 
     /**
      * 
@@ -32,8 +32,8 @@ interface DefaultApi {
      * @param id Id of the film.
      * @return [kotlin.Any]
      */
-    @GET("api/films/{id}")
-    suspend fun apiFilmsIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
+    @GET("films/{id}")
+    suspend fun filmsIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
 
     /**
      * 
@@ -41,10 +41,10 @@ interface DefaultApi {
      * Responses:
      *  - 200: An array of people.
      *
-     * @return [kotlin.collections.List<Person>]
+     * @return [PaginationPerson]
      */
-    @GET("api/people")
-    suspend fun apiPeopleGet(): Response<kotlin.collections.List<Person>>
+    @GET("people")
+    suspend fun peopleGet(): Response<PaginationPerson>
 
     /**
      * 
@@ -55,8 +55,8 @@ interface DefaultApi {
      * @param id Id of the person.
      * @return [kotlin.Any]
      */
-    @GET("api/people/{id}")
-    suspend fun apiPeopleIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
+    @GET("people/{id}")
+    suspend fun peopleIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
 
     /**
      * 
@@ -66,8 +66,8 @@ interface DefaultApi {
      *
      * @return [kotlin.collections.List<Planet>]
      */
-    @GET("api/planets")
-    suspend fun apiPlanetsGet(): Response<kotlin.collections.List<Planet>>
+    @GET("planets")
+    suspend fun planetsGet(): Response<kotlin.collections.List<Planet>>
 
     /**
      * 
@@ -78,7 +78,7 @@ interface DefaultApi {
      * @param id Id of the planet.
      * @return [kotlin.Any]
      */
-    @GET("api/planets/{id}")
-    suspend fun apiPlanetsIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
+    @GET("planets/{id}")
+    suspend fun planetsIdGet(@Path("id") id: kotlin.String): Response<kotlin.Any>
 
 }
