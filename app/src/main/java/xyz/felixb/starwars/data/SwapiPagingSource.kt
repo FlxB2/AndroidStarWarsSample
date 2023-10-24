@@ -11,7 +11,6 @@ class SwapiPagingSource(
 ) {
     override fun getRefreshKey(state: PagingState<Int, Person>) = state.anchorPosition
 
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Person> {
         val page = params.key ?: 1
 

@@ -1,50 +1,75 @@
 package xyz.felixb.starwars.ui
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
-import xyz.felixb.starwars.viewmodels.PeopleViewModel
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import dev.swapi.client.models.Person
+import compose.icons.FontAwesomeIcons
+import compose.icons.fontawesomeicons.Brands
+import compose.icons.fontawesomeicons.brands.JediOrder
+import xyz.felixb.starwars.ui.navigation.PersonView
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StarWarsApp() {
     val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
-            Test()
+    Column {
+        TopAppBar(
+            title = {
+                Text(text = getRouteNameFromBackStackEntry(navBackStackEntry))
+            },
+            navigationIcon = {
+                Icon(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(32.dp),
+                    imageVector = FontAwesomeIcons.Brands.JediOrder,
+                    contentDescription = "The Jedi Order Logo"
+                )
+            },
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primary,
+                titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                actionIconContentColor = MaterialTheme.colorScheme.onSecondary
+            )
+        )
+        NavHost(
+            navController = navController,
+            startDestination = NavDestinations.LIST_OF_CHARACTERS.route
+        ) {
+            composable(NavDestinations.LIST_OF_CHARACTERS.route) {
+                PersonView()
+            }
         }
     }
 }
 
-@Composable
-fun Test(viewModel: PeopleViewModel = hiltViewModel()) {
-    val people: LazyPagingItems<Person> = viewModel.people.collectAsLazyPagingItems()
+private fun getRouteNameFromBackStackEntry(backStackEntry: NavBackStackEntry?) =
+    backStackEntry?.destination?.route?.let { routeToTranslation[it] } ?: ""
 
-    LazyColumn {
-        items(count = people.itemCount,
-            key = { index -> index }) { index ->
-            val person = people[index] ?: return@items
-            PersonItem(person)
-        }
-    }
+enum class NavDestinations(val route: String) {
+    LIST_OF_CHARACTERS("characters"),
+    CHARACTER_DETAILS("character_details")
 }
 
-
-@Composable
-fun PersonItem(person: Person) {
-    Column(
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Name: ${person.name}")
-        Text(text = "Birthyear: ${person.birthYear}")
-    }
-}
+private val routeToTranslation = mapOf(
+    NavDestinations.LIST_OF_CHARACTERS.route to "Characters",
+    NavDestinations.CHARACTER_DETAILS.route to "Character Details"
+)

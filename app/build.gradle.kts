@@ -74,7 +74,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     // DI
-    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.dagger:hilt-android:2.48.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("androidx.paging:paging-common-ktx:3.2.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
@@ -90,6 +90,9 @@ dependencies {
     // Debugging
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // Third Party
+    implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.0")
 }
 
 // Allow references to generated code for hilt

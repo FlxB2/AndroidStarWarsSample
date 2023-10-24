@@ -8,6 +8,15 @@ plugins {
     kotlin("plugin.serialization") version "1.8.10" apply false
 }
 
+/**
+ * We generate the OpenAPI client stubs directly into the main directory as a
+ * separate package. The alternative would be to generate the stubs directly
+ * into the build/ directory. However, the current setup has the following benefits
+ *
+ * - The generated code is checked into version control, this eases the initial setup
+ *   and allows for easier code review if the API changes.
+ * - Stubs can be changed manually if needed.
+ */
 openApiGenerate {
     generatorName.set("kotlin")
     packageName.set("dev.swapi.client")
