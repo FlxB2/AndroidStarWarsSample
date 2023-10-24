@@ -75,7 +75,7 @@ fun StarWarsApp() {
                     expanded = showMenu,
                     onDismissRequest = { showMenu = false }
                 ) {
-                    routeToTranslation.entries.forEach { (route, text) ->
+                    routeToHeaderName.entries.forEach { (route, text) ->
                         DropdownMenuItem(
                             onClick = {
                                 navController.navigate(route)
@@ -86,6 +86,7 @@ fun StarWarsApp() {
                 }
             }
         )
+
         NavHost(
             navController = navController,
             startDestination = NavDestinations.LIST_OF_CHARACTERS.route
@@ -104,7 +105,7 @@ fun StarWarsApp() {
 }
 
 private fun getRouteNameFromBackStackEntry(backStackEntry: NavBackStackEntry?) =
-    backStackEntry?.destination?.route?.let { routeToTranslation[it] } ?: ""
+    backStackEntry?.destination?.route?.let { routeToHeaderName[it] } ?: ""
 
 enum class NavDestinations(val route: String) {
     LIST_OF_CHARACTERS("characters"),
@@ -112,7 +113,7 @@ enum class NavDestinations(val route: String) {
     LIST_OF_FILMS("films")
 }
 
-private val routeToTranslation = mapOf(
+private val routeToHeaderName = mapOf(
     NavDestinations.LIST_OF_CHARACTERS.route to "Characters",
     NavDestinations.LIST_OF_PLANETS.route to "Planets",
     NavDestinations.LIST_OF_FILMS.route to "Films"

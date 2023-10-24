@@ -31,9 +31,9 @@ fun <T : Any> GenericPagingList(
                 val item = pagingItems[index] ?: return@items
                 content(item)
 
-                // As an extension we could add another box with grey boxed for the text
-                // at the end iff the list did not load all pages yet, to indicate
-                // loading behavior
+                // As an extension we could add another box at the and which contains
+                // grey placeholders, indicating the list is not loaded completely
+                // if not all paging items have been retrieved yet
             }
         }
     }

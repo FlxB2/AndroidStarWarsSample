@@ -64,7 +64,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation("androidx.paging:paging-compose:3.2.1")
 
-
     // API
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
@@ -79,7 +78,6 @@ dependencies {
     implementation("androidx.paging:paging-common-ktx:3.2.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
 
-
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -91,7 +89,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    // Third Party
+    // Third Party Icons
     implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.0")
 }
 

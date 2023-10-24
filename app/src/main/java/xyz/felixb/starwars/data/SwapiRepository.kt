@@ -10,6 +10,10 @@ import dev.swapi.client.models.Planet
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Repository handling the Swapi API.
+ * In a real application data could be stored offline here, e.g. via Room.
+ */
 class SwapiRepository @Inject constructor(
     private val api: DefaultApi
 ) {
