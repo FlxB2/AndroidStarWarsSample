@@ -8,8 +8,8 @@ import xyz.felixb.starwars.data.SwapiRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class PeopleViewModel @Inject constructor(
+class PlanetViewModel @Inject constructor(
     repository: SwapiRepository
 ): ViewModel() {
-    val people = repository.getPersons().cachedIn(viewModelScope)
+    val planets = repository.getPlanets().cachedIn(viewModelScope)
 }

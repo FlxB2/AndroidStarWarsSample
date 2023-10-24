@@ -10,7 +10,7 @@ plugins {
 
 /**
  * We generate the OpenAPI client stubs directly into the main directory as a
- * separate package. The alternative would be to generate the stubs directly
+ * separate package. The alternative would be to generate the stubs
  * into the build/ directory. However, the current setup has the following benefits
  *
  * - The generated code is checked into version control, this eases the initial setup

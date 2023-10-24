@@ -19,10 +19,10 @@ interface DefaultApi {
      *  - 200: An array of films.
      *
      * @param page Numeric ID of the page to get
-     * @return [kotlin.collections.List<FilmPagination>]
+     * @return [FilmPagination]
      */
     @GET("films")
-    suspend fun filmsGet(@Query("page") page: kotlin.Int): Response<kotlin.collections.List<FilmPagination>>
+    suspend fun filmsGet(@Query("page") page: kotlin.Int): Response<FilmPagination>
 
     /**
      * 
@@ -67,10 +67,10 @@ interface DefaultApi {
      *  - 200: An array of planets.
      *
      * @param page Numeric ID of the page to get
-     * @return [kotlin.collections.List<PlanetPagination>]
+     * @return [PlanetPagination]
      */
     @GET("planets")
-    suspend fun planetsGet(@Query("page") page: kotlin.Int): Response<kotlin.collections.List<PlanetPagination>>
+    suspend fun planetsGet(@Query("page") page: kotlin.Int): Response<PlanetPagination>
 
     /**
      * 
